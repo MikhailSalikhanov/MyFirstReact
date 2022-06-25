@@ -1,5 +1,10 @@
-li{
+.menuItem{
   margin-top: 20px;
   text-align: center;
   font-size: 30px;
+  /* text-decoration: underline; */
+}
+
+.active{
+  color: red;
 }
