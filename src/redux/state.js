@@ -21,6 +21,8 @@ let state = {
             {id: 2, text: 'second post', likesCount: "11"},
             {id: 3, text: 'third post', likesCount: "34"},  
         ],
+
+        updatedText: ' ',
     },
 
     mainMenu: {
@@ -31,14 +33,21 @@ let state = {
         ],
     },
 
-    addPost: function (postText){
+    addPost: function (){
         let newPost = {
             id: 4,
-            text: postText,
+            text: state.profilePage.updatedText,
             likesCount: "0",
         }
       
-        state.profilePage.postData.push(newPost);    
+        state.profilePage.postData.push(newPost);
+        state.profilePage.updatedText = '';
+    
+        rerender(state);    
+    },
+
+    updatePostText: function (updatedText){
+        state.profilePage.updatedText = updatedText; 
         rerender(state);    
     }
 

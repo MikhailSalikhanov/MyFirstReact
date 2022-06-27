@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 let rerender = function (state){
     root.render(
       <React.StrictMode>
-          <App state={state} addPost={state.addPost}/>
+          <App state={state}/>
       </React.StrictMode>
     );
 }
