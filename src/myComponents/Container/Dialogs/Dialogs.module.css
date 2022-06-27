@@ -1,0 +1,23 @@
+.Dialogs{
+    display: flex;
+}
+
+.users{
+    width: 30%;
+    font-size: 30px;
+    line-height: 45px;
+}
+
+.messages{
+    width: 70%;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.picture{
+    width: 100%;
+}
+
+.active{
+    color: red;
+}

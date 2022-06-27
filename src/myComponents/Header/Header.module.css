@@ -1,3 +1,14 @@
 .picture{
-  width: 50px;
+  width: 20%;
+}
+
+.picture img{
+  height: 70px;
+  display: block;
+  margin: 0 auto;
+}
+
+.text{
+  width: 80%;
+  text-align: center;
 }

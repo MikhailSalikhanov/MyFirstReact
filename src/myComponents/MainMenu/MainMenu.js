@@ -1,7 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import s from './MainMenu.module.css'
 
-function MainMenu() {
+
+function Friend (props) {
+  return(
+    <div className={s.friendAvatars}>{props.name}</div>
+  )
+}
+
+function MainMenu(props) {
+  let friend = props.state.friendsData.map(f =>  <Friend name={f.name} />);
     return (
       <div className="MainMenu">
         
@@ -11,6 +19,9 @@ function MainMenu() {
             <div className={s.menuItem}><NavLink to='/Music' className={navData => navData.isActive ? s.active : ''}>Music</NavLink></div>
             <div className={s.menuItem}><NavLink to='/settings' className={navData => navData.isActive ? s.active : ''}>Settings</NavLink></div>
 
+            <div className={s.friends}>Friends:</div>
+            <div>{friend}</div>
+      
       </div>
     );
   }

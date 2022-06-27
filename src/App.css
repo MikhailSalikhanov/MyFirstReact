@@ -18,7 +18,7 @@
 .MainMenu{
   width: 20%;
   height: 1000px;
-  background-color: aquamarine;
+  background-color: aqua;
 }
 
 .Header{
@@ -26,4 +26,5 @@
   text-align: left;
   background-color: aqua;
   font-size: 70px;
+  display: flex;
 }
