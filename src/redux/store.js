@@ -1,4 +1,7 @@
 import rerender from "../render";
+import messageReducer from "./messageReducer";
+import profileReducer from "./profileReducer";
+
 
 let state = {
     messagePage: {
@@ -13,6 +16,8 @@ let state = {
             {id: 2, message: 'How are you?'},
             {id: 3, message: 'I am ok!'},
             ],
+        
+        updatedMessage: ' ',
     },
 
     profilePage: {
@@ -22,7 +27,7 @@ let state = {
             {id: 3, text: 'third post', likesCount: "34"},  
         ],
 
-        updatedText: ' ',
+        updatedText: 'something',
     },
 
     mainMenu: {
@@ -33,24 +38,12 @@ let state = {
         ],
     },
 
-    addPost: function (){
-        let newPost = {
-            id: 4,
-            text: state.profilePage.updatedText,
-            likesCount: "0",
-        }
-      
-        state.profilePage.postData.push(newPost);
-        state.profilePage.updatedText = '';
-    
-        rerender(state);    
-    },
 
-    updatePostText: function (updatedText){
-        state.profilePage.updatedText = updatedText; 
-        rerender(state);    
+    dispatch: function (action){
+        this.profilePage = profileReducer (this.profilePage, action);
+        this.messagePage = messageReducer (this.messagePage, action);
+        rerender(state);   
     }
-
 }
 
 export default state;

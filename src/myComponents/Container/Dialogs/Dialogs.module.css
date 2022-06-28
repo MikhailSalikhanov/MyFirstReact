@@ -10,8 +10,10 @@
 
 .messages{
     width: 70%;
+    height: 30px;
     font-size: 20px;
     line-height: 30px;
+    display: block;
 }
 
 .picture{

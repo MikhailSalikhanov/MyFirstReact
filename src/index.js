@@ -1,6 +1,6 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state from './redux/state';
+import state from './redux/store';
 import rerender from './render';
 
 

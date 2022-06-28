@@ -15,8 +15,8 @@ function App(props) {
           <MainMenu state={props.state.mainMenu}/>
           <div className='Container'>
             <Routes>
-              <Route path='/dialogs' element={<Dialogs state={props.state.messagePage} />}/>
-              <Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost={props.state.addPost} updatePostText={props.state.updatePostText} />}/>
+              <Route path='/dialogs' element={<Dialogs messagePage={props.state.messagePage} dispatch={props.state.dispatch.bind(props.state)}/>}/>
+              <Route path='/profile' element={<Profile profilePage={props.state.profilePage} dispatch={props.state.dispatch.bind(props.state)} />}/>
             </Routes>
           </div>
         </div>
