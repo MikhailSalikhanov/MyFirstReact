@@ -15,6 +15,7 @@ function AddPost(props) {
     debugger;
     let text = newPost.current.value;
     props.dispatch(updatePostTextActionCreator(text));
+    debugger;
   }
  
     return (

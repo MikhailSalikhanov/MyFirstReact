@@ -12,11 +12,11 @@ function App(props) {
       <div className="App">
         <Header />
         <div className='wrapper'>
-          <MainMenu state={props.state.mainMenu}/>
+          <MainMenu mainMenu={props.store.getState().mainMenu}/>
           <div className='Container'>
             <Routes>
-              <Route path='/dialogs' element={<Dialogs messagePage={props.state.messagePage} dispatch={props.state.dispatch.bind(props.state)}/>}/>
-              <Route path='/profile' element={<Profile profilePage={props.state.profilePage} dispatch={props.state.dispatch.bind(props.state)} />}/>
+              <Route path='/dialogs' element={<Dialogs messagePage={props.store.getState().messagePage} dispatch={props.store.dispatch.bind(props.store)}/>}/>
+              <Route path='/profile' element={<Profile profilePage={props.store.getState().profilePage} dispatch={props.store.dispatch.bind(props.store)} />}/>
             </Routes>
           </div>
         </div>

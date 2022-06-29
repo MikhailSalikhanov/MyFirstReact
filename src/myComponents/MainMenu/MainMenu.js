@@ -9,7 +9,7 @@ function Friend (props) {
 }
 
 function MainMenu(props) {
-  let friend = props.state.friendsData.map(f =>  <Friend name={f.name} />);
+  let friend = props.mainMenu.friendsData.map(f =>  <Friend name={f.name} />);
     return (
       <div className="MainMenu">
         
