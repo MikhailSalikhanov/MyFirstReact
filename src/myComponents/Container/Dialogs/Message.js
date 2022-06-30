@@ -4,7 +4,7 @@ import s from './Dialogs.module.css'
 
 function MessageItem (props) {
   return(
-    <div className={s.messages}>{props.text}</div>
+    <div>{props.text}</div>
   )
 }
 

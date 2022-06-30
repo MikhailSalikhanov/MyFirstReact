@@ -8,10 +8,12 @@ function Dialogs(props) {
   let message = props.messagePage.messagesData.map(m => <MessageItem text={m.message}/>)
 
   let changeMessage = function(e){
-    props.dispatch(updateMessageCreator(e.target.value))
+    props.updateMessageCreator(e.target.value);
+    // props.store.dispatch(updateMessageCreator(e.target.value))
   };
   let sendMessage = function(e){
-    props.dispatch(addMessageCreator())
+    props.sendMessage();
+    // props.store.dispatch(addMessageCreator())
   };
 
     return (
@@ -25,7 +27,7 @@ function Dialogs(props) {
               <div className={s.messages}>
                 {message}
               </div>
-              <div>
+              <div className={s.forms}>
                   <div>
                       <textarea onChange={changeMessage} value={props.messagePage.updatedMessage}></textarea>
                   </div>
