@@ -27,11 +27,16 @@ let messageReducer = function (state = initialState, action){
             id: 4, 
             message: state.updatedMessage,
         }
-        state.messagesData.push(newMessage);
-        state.updatedMessage=' ';
+        let stateCopy = {...state};
+        stateCopy.messagesData = [...state.messagesData];
+        stateCopy.messagesData.push(newMessage);
+        stateCopy.updatedMessage=' ';
+        return stateCopy;
     }
     else if (action.type === UPDATE_MESSAGE){
-        state.updatedMessage = action.updatedMessage; 
+        let stateCopy = {...state};
+        stateCopy.updatedMessage = action.updatedMessage; 
+        return stateCopy;
     }       
     return state; 
 }

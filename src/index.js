@@ -5,23 +5,26 @@ import store from './redux/reduxStore';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { Provider } from 'react-redux';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerender = function (store){
+// let rerender = function (store){
     root.render(
       <React.StrictMode>
-          <App store={store}/>
+            <Provider store={store}>
+                <App store={store}/>
+            </Provider>
       </React.StrictMode>
     );
-}
+// }
 
-rerender(store);
+// rerender(store);
 
-store.subscribe(() => {
-    rerender(store); 
-});
+// store.subscribe(() => {
+//     rerender(store); 
+// });
 
 
 // If you want to start measuring performance in your app, pass a function

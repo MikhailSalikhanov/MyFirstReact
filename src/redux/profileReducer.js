@@ -16,20 +16,24 @@ let initialState = {
 
 
 let profileReducer = function (state = initialState, action){
-    debugger;
     if (action.type === ADD_POST){
         let newPost = {
             id: 4,
             text: state.updatedText,
             likesCount: "0",
         }
-        state.postData.push(newPost);
-        state.updatedText = ''; 
+        let stateCopy = {...state};
+        stateCopy.postData = [...state.postData]
+        stateCopy.postData.push(newPost);
+        stateCopy.updatedText = ''; 
+        return stateCopy;
     } else if (action.type === UPDATE_POST_TEXT){
-        debugger;
-        state.updatedText = action.updatedText; 
+        let stateCopy = {...state};
+        stateCopy.updatedText = action.updatedText; 
+        return stateCopy;
     } 
     return state;
+
 }
 
 export default profileReducer;
