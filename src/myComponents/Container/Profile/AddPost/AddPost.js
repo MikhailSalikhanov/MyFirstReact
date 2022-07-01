@@ -7,7 +7,7 @@ import Post from './../Post/Post';
 
 function AddPost(props) {
   let newPost = React.createRef();
-  let post = props.postData.map(p => <Post text={p.text} likesCount={p.likesCount} />);
+  let post = props.postData.map(p => <Post text={p.text} key={p.id} likesCount={p.likesCount} />);
 
   let addPost = function(){
     // let text = newPost.current.value;

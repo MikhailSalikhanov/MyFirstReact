@@ -4,8 +4,8 @@ import MessageItem from './Message'
 import {updateMessageCreator, addMessageCreator} from './../../../redux/messageReducer'
 
 function Dialogs(props) {
-  let user = props.messagePage.UsersData.map(u => <User name={u.name} id={u.id}/>)
-  let message = props.messagePage.messagesData.map(m => <MessageItem text={m.message}/>)
+  let user = props.messagePage.UsersData.map(u => <User name={u.name} key={u.id} id={u.id}/>)
+  let message = props.messagePage.messagesData.map(m => <MessageItem text={m.message} key={m.id}/>)
 
   let changeMessage = function(e){
     props.updateMessageCreator(e.target.value);

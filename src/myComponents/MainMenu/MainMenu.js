@@ -9,7 +9,7 @@ function Friend (props) {
 }
 
 function MainMenu(props) {
-  let friend = props.mainMenu.friendsData.map(f =>  <Friend name={f.name} />);
+  let friend = props.mainMenu.friendsData.map(f =>  <Friend name={f.name} key={f.id}/>);
     return (
       <div className="MainMenu">
         
@@ -18,6 +18,7 @@ function MainMenu(props) {
             <div className={s.menuItem}><NavLink to='/news'  className={navData => navData.isActive ? s.active : ''}>News</NavLink></div>
             <div className={s.menuItem}><NavLink to='/Music' className={navData => navData.isActive ? s.active : ''}>Music</NavLink></div>
             <div className={s.menuItem}><NavLink to='/settings' className={navData => navData.isActive ? s.active : ''}>Settings</NavLink></div>
+            <div className={s.menuItem}><NavLink to='/users' className={navData => navData.isActive ? s.active : ''}>All users</NavLink></div>
 
             <div className={s.friends}>Friends:</div>
             <div>{friend}</div>
