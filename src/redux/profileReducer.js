@@ -1,8 +1,10 @@
 let ADD_POST = 'ADD-POST';
 let UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+let SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export let addPostActionCreator = () => ({type: ADD_POST});
 export let updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, updatedText: text})
+export let setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 let initialState = {
     postData: [
@@ -11,6 +13,7 @@ let initialState = {
         {id: 3, text: 'third post', likesCount: "34"},  
     ],
     updatedText: 'something',
+    profile: null,
 };
 
 
@@ -31,6 +34,8 @@ let profileReducer = function (state = initialState, action){
         let stateCopy = {...state};
         stateCopy.updatedText = action.updatedText; 
         return stateCopy;
+    } else if (action.type === SET_USER_PROFILE){
+        return {...state, profile: action.profile};
     } 
     return state;
 

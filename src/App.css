@@ -18,7 +18,7 @@
 .MainMenu{
   width: 20%;
   height: 1200px;
-  background-color: aqua;
+  background-color: #00ffff;
 }
 
 .Header{
@@ -30,7 +30,7 @@
 }
 
 .button{
-  background-color: blue;
+  background-color: #0000ff;
   width: 100px;
   height: 40px;
   border-radius: 10px;

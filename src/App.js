@@ -4,8 +4,8 @@ import MainMenu from './myComponents/MainMenu/MainMenu';
 import Header from './myComponents/Header/Header';
 import DialogsContainer from './myComponents/Container/Dialogs/DialogsContainer';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Profile from './myComponents/Container/Profile/Profile';
 import AllUsersContainer from './myComponents/Container/AllUsers/AllUsersContainer';
+import ProfileContainer from './myComponents/Container/Profile/ProfileContainer';
 
 
 function App(props) {
@@ -18,7 +18,8 @@ function App(props) {
           <div className='Container'>
             <Routes>
               <Route path='/dialogs' element={<DialogsContainer />}/>
-              <Route path='/profile' element={<Profile />}/>
+              <Route path='/profile/:userId' element={<ProfileContainer />}/>
+              <Route path='/profile/' element={<ProfileContainer />}/>
               <Route path='/users' element={<AllUsersContainer/>}/>
 
             </Routes>

@@ -30,3 +30,9 @@ width: 45%;
     flex-wrap: wrap;
     overflow: hidden
 }
+
+
+.selected {
+    font-weight: 900;
+    font-size: 20px;
+}
