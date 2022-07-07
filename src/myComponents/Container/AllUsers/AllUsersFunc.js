@@ -2,6 +2,8 @@ import React from "react"
 import styles from './AllUsers.module.css'
 import userPhoto from './../../../assets/images/person.png'
 import { NavLink } from "react-router-dom";
+import { followAPI } from "../../../API/api";
+
 
 let AllUsersFunc = (props) =>{
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -24,8 +26,26 @@ let AllUsersFunc = (props) =>{
                             <div><img src={ u.photos.small != null ? u.photos.small : userPhoto} className={styles.image} /></div>
                         </NavLink>
                             <div>{u.followed 
-                            ? <button onClick={()=>{props.unfollow(u.id)}} className="button">Unfollow</button> 
-                            : <button onClick={()=>{props.follow(u.id)}} className="button">Follow</button>}</div>
+                            ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={()=>{
+                                props.toggleFollowingProgress(true, u.id);
+                                followAPI.deleteFollow(u.id).then(data => {
+                                    if (data.resultCode == 0) {    
+                                        props.unfollow(u.id);
+                                    }
+                                    props.toggleFollowingProgress(false, u.id);
+                                });
+                            }} className="button">Unfollow</button> 
+                            : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={()=>{
+                                props.toggleFollowingProgress(true, u.id);
+                                followAPI.postFollow(u.id).then(data => {
+                                    if (data.resultCode == 0) {    
+                                        props.follow(u.id);
+                                    }
+                                props.toggleFollowingProgress(false, u.id);
+                                debugger
+                                });
+                                
+                                }} className="button">Follow</button>}</div>
                         </div>
                         <div className={styles.flexcollumn}>
                             <div className={styles.flexrow}>

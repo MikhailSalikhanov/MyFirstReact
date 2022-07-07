@@ -1,27 +1,28 @@
 import React from "react";
 import { connect } from "react-redux/es/exports";
-import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching } from "../../../redux/AllUsersReducer";
-import axios from "axios";
+import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress, getUsersThunkCreator } from "../../../redux/AllUsersReducer";
 import AllUsersFunc from "./AllUsersFunc";
 import Preloader from "../../Common/Preloader/Preloader";
+import { usersAPI } from "../../../API/api";
 
 class AllUsersContainer extends React.Component {
    
     componentDidMount (){
-        this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount);
-        });
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+        // this.props.toggleIsFetching(true);
+        // usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+        //     this.props.toggleIsFetching(false);
+        //     this.props.setUsers(data.items);
+        //     this.props.setTotalUsersCount(data.totalCount);
+        // });
     }
 
     onPageChanged = (currentPage) => {
         this.props.toggleIsFetching(true);
         this.props.setCurrentPage(currentPage);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`).then(response => {
+        usersAPI.getUsers(currentPage, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false);
-            this.props.setUsers(response.data.items);
+            this.props.setUsers(data.items);
        });
     };
 
@@ -30,12 +31,15 @@ class AllUsersContainer extends React.Component {
         return <>
         {this.props.isFetching ? <Preloader /> : null}
         <AllUsersFunc totalUsersCount={this.props.totalUsersCount}
-        pageSize={this.props.pageSize}
-        currentPage={this.props.currentPage}
-        onPageChanged={this.onPageChanged}
-        allusers={this.props.allusers}
-        unfollow={this.props.unfollow}
-        follow={this.props.follow}
+                        pageSize={this.props.pageSize}
+                        currentPage={this.props.currentPage}
+                        onPageChanged={this.onPageChanged}
+                        allusers={this.props.allusers}
+                        unfollow={this.props.unfollow}
+                        follow={this.props.follow}
+                        toggleFollowingProgress={this.props.toggleFollowingProgress}
+                        followingInProgress={this.props.followingInProgress}
+
 
         />
     </>
@@ -49,34 +53,8 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.allUsersPage.totalUsersCount,
         currentPage: state.allUsersPage.currentPage,
         isFetching: state.allUsersPage.isFetching,
+        followingInProgress: state.allUsersPage.followingInProgress,
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userId) => {
-//             dispatch(followActionCreator(userId));
-//         },
-//         unfollow: (userId) => {
-//             dispatch(unfollowActionCreator(userId));
-//         },
-//         setUsers: (users) => {
-//             let action = setUsersAC(users);
-//             dispatch(action);
-//         },
-//         setCurrentPage: (pageNumber) => {
-//             let action = setCurrentPageAC(pageNumber);
-//             dispatch(action);
-//         },
-//         setTotalUsersCount: (totalCount) => {
-//             let action = setUsersTotalCountAC(totalCount);
-//             dispatch(action);
-//         },
-//         toggleIsFetching: (isFetching) => {
-//             let action = toggleIsFetchingAC(isFetching);
-//             dispatch(action);
-//         },
-//     }
-// } 
-
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching })(AllUsersContainer);
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress, getUsersThunkCreator })(AllUsersContainer);

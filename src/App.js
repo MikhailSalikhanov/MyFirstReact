@@ -1,18 +1,18 @@
 import './App.css';
 import './myComponents/Reset.css'
 import MainMenu from './myComponents/MainMenu/MainMenu';
-import Header from './myComponents/Header/Header';
 import DialogsContainer from './myComponents/Container/Dialogs/DialogsContainer';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import AllUsersContainer from './myComponents/Container/AllUsers/AllUsersContainer';
 import ProfileContainer from './myComponents/Container/Profile/ProfileContainer';
+import HeaderContainer from './myComponents/Header/HeaderContainer';
 
 
 function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
+        <HeaderContainer />
         <div className='wrapper'>
           <MainMenu mainMenu={props.store.getState().mainMenu}/>
           <div className='Container'>
